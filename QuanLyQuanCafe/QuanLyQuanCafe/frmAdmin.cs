@@ -17,24 +17,69 @@ namespace QuanLyQuanCafe
 	{
 		BindingSource drinkList = new BindingSource();
 		BindingSource accountList = new BindingSource();
+		BindingSource categoryList = new BindingSource();
+		BindingSource tableList = new BindingSource();
 
 		public Account loginAccount;
 
 		public frmAdmin()
 		{
 			InitializeComponent();
-			LoadDateTimePicker();
-			LoadListBillByDate(dtpCheckIn.Value, dtpCheckOut.Value);
-			dgvThucAn.DataSource = drinkList;
-			dgvAccount.DataSource = accountList;
-			LoadListDrink();
-			LoadAccount();
-			AddDrinkBinding();
-			AddAccountBinding();
-			LoadCategoryIntoComboBox(cbbLoai);
+			LoadData();
 		}
 
 		#region method
+		void LoadData()
+		{
+			//load data to tab page doanh thu
+			LoadDateTimePicker();
+			LoadListBillByDate(dtpCheckIn.Value, dtpCheckOut.Value);
+
+			//load data to account list
+			dgvAccount.DataSource = accountList;
+			LoadAccount();
+			AddAccountBinding();
+
+			//load data to drink list
+			dgvThucAn.DataSource = drinkList;
+			LoadListDrink();
+			AddDrinkBinding();
+			LoadCategoryIntoComboBox(cbbLoai);
+
+			//load data to category list
+			dgvLoai.DataSource = categoryList;
+			LoadCategory();
+			AddCategoryBinding();
+
+			//load data to table list
+			dgvBan.DataSource = tableList;
+			LoadTable();
+			AddTableBinding();
+		}
+
+		void LoadTable()
+		{
+			tableList.DataSource = TableDAO.Instance.LoadTableList();
+		}
+
+		void AddTableBinding()
+		{
+			txtMaSoBan.DataBindings.Add(new Binding("Text", dgvBan.DataSource, "ID", true, DataSourceUpdateMode.Never));
+			txtTenBan.DataBindings.Add(new Binding("Text", dgvBan.DataSource, "Name", true, DataSourceUpdateMode.Never));
+			txtSttBan.DataBindings.Add(new Binding("Text", dgvBan.DataSource, "Status", true, DataSourceUpdateMode.Never));
+
+		}
+
+		void LoadCategory()
+		{
+			categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
+		}
+
+		void AddCategoryBinding()
+		{
+			txtMaLoai.DataBindings.Add(new Binding("Text", dgvLoai.DataSource, "ID", true, DataSourceUpdateMode.Never));
+			txtTenLoai.DataBindings.Add(new Binding("Text", dgvLoai.DataSource, "Name", true, DataSourceUpdateMode.Never));
+		}
 
 		void LoadAccount()
 		{
@@ -143,6 +188,87 @@ namespace QuanLyQuanCafe
 			else
 			{
 				MessageBox.Show("Reset mật khẩu không thành công");
+			}
+		}
+
+		void InsertCategory(string name)
+		{
+			if(CategoryDAO.Instance.InsertCategory(name))
+			{
+				MessageBox.Show("Thêm loại đồ uống thành công");
+				LoadCategory();
+				LoadCategoryIntoComboBox(cbbLoai);
+			}
+			else
+			{
+				MessageBox.Show("Thêm loại đồ uống thất bại!!!");
+			}
+		}
+
+		void UpdateCategory(int id, string name)
+		{
+			if(CategoryDAO.Instance.UpdateCategory(id, name))
+			{
+				MessageBox.Show("Cập nhật thành công");
+				LoadCategory();
+			}
+			else
+			{
+				MessageBox.Show("Cập nhật thất bại!!!");
+			}
+		}
+
+		void DeleteCategory(int id)
+		{
+			if (CategoryDAO.Instance.DeleteCategory(id))
+			{
+				MessageBox.Show("Cập nhật thành công");
+				LoadCategory();
+				LoadListDrink();
+			}
+			else
+			{
+				MessageBox.Show("Cập nhật thất bại!!!");
+			}
+		}
+
+		void AddTable(string name)
+		{
+			if(TableDAO.Instance.InsertTable(name))
+			{
+				MessageBox.Show("Thêm bàn thành công");
+				LoadTable();
+			}
+			else
+			{
+				MessageBox.Show("Thêm bàn thất bại!!!");
+			}
+		}
+
+		void UpdateTable(int id, string name)
+		{
+			if (TableDAO.Instance.UpdateTable(id, name))
+			{
+				MessageBox.Show("Cập nhật bàn thành công");
+				LoadTable();
+			}
+			else
+			{
+				MessageBox.Show("Cập nhật bàn thất bại!!!");
+			}
+		}
+
+		void DeleteTable(int id)
+		{
+
+			if (TableDAO.Instance.DeleteTable(id))
+			{
+				MessageBox.Show("Xóa bàn thành công");
+				LoadTable();
+			}
+			else
+			{
+				MessageBox.Show("Xóa bàn thất bại!!!");
 			}
 		}
 		#endregion
@@ -289,6 +415,33 @@ namespace QuanLyQuanCafe
 			ResetPassword(userName);
 		}
 
+		private void btnXemLoai_Click(object sender, EventArgs e)
+		{
+			LoadCategory();
+		}
+
+		private void btnSuaLoai_Click(object sender, EventArgs e)
+		{
+			string name = txtTenLoai.Text;
+			int id = Convert.ToInt32(txtMaLoai.Text);
+
+			UpdateCategory(id, name);
+		}
+
+		private void btnXoaLoai_Click(object sender, EventArgs e)
+		{
+			int id = Convert.ToInt32(txtMaLoai.Text);
+
+			DeleteCategory(id);
+		}
+
+		private void btnThemLoai_Click(object sender, EventArgs e)
+		{
+			string name = txtTenLoai.Text;
+
+			InsertCategory(name);
+		}
+
 		private event EventHandler insertDrink;
 		public event EventHandler InsertDrink
 		{
@@ -310,8 +463,6 @@ namespace QuanLyQuanCafe
 			remove { deleteDrink -= value; }
 		}
 
-
 		#endregion
-
 	}
 } 

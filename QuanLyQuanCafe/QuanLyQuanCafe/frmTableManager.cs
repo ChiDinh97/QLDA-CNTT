@@ -144,6 +144,7 @@ namespace QuanLyQuanCafe
 			frm.InsertDrink += frm_InsertDrink;
 			frm.UpdateDrink += frm_UpdateDrink;
 			frm.DeleteDrink += frm_DeleteDrink;
+
 			frm.ShowDialog();
 		}
 
