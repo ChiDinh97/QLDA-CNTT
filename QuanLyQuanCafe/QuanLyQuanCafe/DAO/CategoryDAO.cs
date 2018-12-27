@@ -20,7 +20,7 @@ namespace QuanLyQuanCafe.DAO
 		public List<Category> GetListCategory()
 		{
 			List<Category> lst = new List<Category>();
-			string query = "SELECT * FROM DRINKCATEGORY";
+			string query = "SELECT id, name FROM DRINKCATEGORY";
 			DataTable data = DataProvider.Instance.ExecuteQuery(query);
 
 			foreach(DataRow item in data.Rows)
@@ -49,6 +49,33 @@ namespace QuanLyQuanCafe.DAO
 			}
 
 			return cat;
+		}
+
+		public bool InsertCategory(string name)
+		{
+			string query = string.Format("INSERT dbo.DrinkCategory (name) VALUES (N'{0}')", name);
+			int result = DataProvider.Instance.ExecuteNonQuery(query);
+			return result > 0;
+		}
+
+		public bool UpdateCategory(int id, string name)
+		{
+			string query = string.Format("UPDATE dbo.DrinkCategory SET name = N'{0}' WHERE id = {1}", name, id);
+			int result = DataProvider.Instance.ExecuteNonQuery(query);
+
+			return result > 0;
+		}
+
+		public bool DeleteCategory(int id)
+		{
+			//delete all drink refer to this category
+			DrinkDAO.Instance.DeleteDrinkByCategoryID(id);
+
+			//then delete category
+			string query = string.Format("DELETE dbo.DrinkCategory WHERE id = {0}", id);
+			int result = DataProvider.Instance.ExecuteNonQuery(query);
+
+			return result > 0;
 		}
 	}
 }

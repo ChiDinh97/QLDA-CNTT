@@ -67,12 +67,13 @@
 			this.btnXoaMon = new System.Windows.Forms.Button();
 			this.btnThemMon = new System.Windows.Forms.Button();
 			this.tpDanhMuc = new System.Windows.Forms.TabPage();
+			this.panel16 = new System.Windows.Forms.Panel();
+			this.dgvLoai = new System.Windows.Forms.DataGridView();
 			this.panel12 = new System.Windows.Forms.Panel();
 			this.btnXemLoai = new System.Windows.Forms.Button();
 			this.btnSuaLoai = new System.Windows.Forms.Button();
 			this.btnXoaLoai = new System.Windows.Forms.Button();
 			this.btnThemLoai = new System.Windows.Forms.Button();
-			this.dgvLoai = new System.Windows.Forms.DataGridView();
 			this.panel14 = new System.Windows.Forms.Panel();
 			this.panel17 = new System.Windows.Forms.Panel();
 			this.txtTenLoai = new System.Windows.Forms.TextBox();
@@ -81,15 +82,14 @@
 			this.txtMaLoai = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.tpBanAn = new System.Windows.Forms.TabPage();
+			this.panel26 = new System.Windows.Forms.Panel();
+			this.dgvBan = new System.Windows.Forms.DataGridView();
 			this.panel15 = new System.Windows.Forms.Panel();
 			this.btnXemBan = new System.Windows.Forms.Button();
-			this.btnSuaBan = new System.Windows.Forms.Button();
-			this.btnXoaBan = new System.Windows.Forms.Button();
 			this.btnThemBan = new System.Windows.Forms.Button();
-			this.dgvBan = new System.Windows.Forms.DataGridView();
 			this.panel19 = new System.Windows.Forms.Panel();
 			this.panel21 = new System.Windows.Forms.Panel();
-			this.cbbTrangThai = new System.Windows.Forms.ComboBox();
+			this.txtSttBan = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.panel22 = new System.Windows.Forms.Panel();
 			this.txtTenBan = new System.Windows.Forms.TextBox();
@@ -133,14 +133,16 @@
 			this.panel8.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.tpDanhMuc.SuspendLayout();
-			this.panel12.SuspendLayout();
+			this.panel16.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvLoai)).BeginInit();
+			this.panel12.SuspendLayout();
 			this.panel14.SuspendLayout();
 			this.panel17.SuspendLayout();
 			this.panel18.SuspendLayout();
 			this.tpBanAn.SuspendLayout();
-			this.panel15.SuspendLayout();
+			this.panel26.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvBan)).BeginInit();
+			this.panel15.SuspendLayout();
 			this.panel19.SuspendLayout();
 			this.panel21.SuspendLayout();
 			this.panel22.SuspendLayout();
@@ -551,8 +553,8 @@
 			// 
 			// tpDanhMuc
 			// 
+			this.tpDanhMuc.Controls.Add(this.panel16);
 			this.tpDanhMuc.Controls.Add(this.panel12);
-			this.tpDanhMuc.Controls.Add(this.dgvLoai);
 			this.tpDanhMuc.Controls.Add(this.panel14);
 			this.tpDanhMuc.Location = new System.Drawing.Point(4, 22);
 			this.tpDanhMuc.Name = "tpDanhMuc";
@@ -561,6 +563,23 @@
 			this.tpDanhMuc.TabIndex = 6;
 			this.tpDanhMuc.Text = "Danh mục";
 			this.tpDanhMuc.UseVisualStyleBackColor = true;
+			// 
+			// panel16
+			// 
+			this.panel16.Controls.Add(this.dgvLoai);
+			this.panel16.Location = new System.Drawing.Point(0, 48);
+			this.panel16.Name = "panel16";
+			this.panel16.Size = new System.Drawing.Size(306, 283);
+			this.panel16.TabIndex = 6;
+			// 
+			// dgvLoai
+			// 
+			this.dgvLoai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvLoai.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dgvLoai.Location = new System.Drawing.Point(0, 0);
+			this.dgvLoai.Name = "dgvLoai";
+			this.dgvLoai.Size = new System.Drawing.Size(306, 283);
+			this.dgvLoai.TabIndex = 3;
 			// 
 			// panel12
 			// 
@@ -581,6 +600,7 @@
 			this.btnXemLoai.TabIndex = 3;
 			this.btnXemLoai.Text = "Xem";
 			this.btnXemLoai.UseVisualStyleBackColor = true;
+			this.btnXemLoai.Click += new System.EventHandler(this.btnXemLoai_Click);
 			// 
 			// btnSuaLoai
 			// 
@@ -590,6 +610,7 @@
 			this.btnSuaLoai.TabIndex = 2;
 			this.btnSuaLoai.Text = "Sửa";
 			this.btnSuaLoai.UseVisualStyleBackColor = true;
+			this.btnSuaLoai.Click += new System.EventHandler(this.btnSuaLoai_Click);
 			// 
 			// btnXoaLoai
 			// 
@@ -599,6 +620,7 @@
 			this.btnXoaLoai.TabIndex = 1;
 			this.btnXoaLoai.Text = "Xóa";
 			this.btnXoaLoai.UseVisualStyleBackColor = true;
+			this.btnXoaLoai.Click += new System.EventHandler(this.btnXoaLoai_Click);
 			// 
 			// btnThemLoai
 			// 
@@ -608,14 +630,7 @@
 			this.btnThemLoai.TabIndex = 0;
 			this.btnThemLoai.Text = "Thêm";
 			this.btnThemLoai.UseVisualStyleBackColor = true;
-			// 
-			// dgvLoai
-			// 
-			this.dgvLoai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvLoai.Location = new System.Drawing.Point(3, 3);
-			this.dgvLoai.Name = "dgvLoai";
-			this.dgvLoai.Size = new System.Drawing.Size(297, 325);
-			this.dgvLoai.TabIndex = 3;
+			this.btnThemLoai.Click += new System.EventHandler(this.btnThemLoai_Click);
 			// 
 			// panel14
 			// 
@@ -681,8 +696,8 @@
 			// 
 			// tpBanAn
 			// 
+			this.tpBanAn.Controls.Add(this.panel26);
 			this.tpBanAn.Controls.Add(this.panel15);
-			this.tpBanAn.Controls.Add(this.dgvBan);
 			this.tpBanAn.Controls.Add(this.panel19);
 			this.tpBanAn.Location = new System.Drawing.Point(4, 22);
 			this.tpBanAn.Name = "tpBanAn";
@@ -692,11 +707,26 @@
 			this.tpBanAn.Text = "Bàn ăn";
 			this.tpBanAn.UseVisualStyleBackColor = true;
 			// 
+			// panel26
+			// 
+			this.panel26.Controls.Add(this.dgvBan);
+			this.panel26.Location = new System.Drawing.Point(0, 48);
+			this.panel26.Name = "panel26";
+			this.panel26.Size = new System.Drawing.Size(303, 283);
+			this.panel26.TabIndex = 6;
+			// 
+			// dgvBan
+			// 
+			this.dgvBan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvBan.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dgvBan.Location = new System.Drawing.Point(0, 0);
+			this.dgvBan.Name = "dgvBan";
+			this.dgvBan.Size = new System.Drawing.Size(303, 283);
+			this.dgvBan.TabIndex = 3;
+			// 
 			// panel15
 			// 
 			this.panel15.Controls.Add(this.btnXemBan);
-			this.panel15.Controls.Add(this.btnSuaBan);
-			this.panel15.Controls.Add(this.btnXoaBan);
 			this.panel15.Controls.Add(this.btnThemBan);
 			this.panel15.Location = new System.Drawing.Point(0, 0);
 			this.panel15.Name = "panel15";
@@ -712,40 +742,14 @@
 			this.btnXemBan.Text = "Xem";
 			this.btnXemBan.UseVisualStyleBackColor = true;
 			// 
-			// btnSuaBan
-			// 
-			this.btnSuaBan.Location = new System.Drawing.Point(157, 3);
-			this.btnSuaBan.Name = "btnSuaBan";
-			this.btnSuaBan.Size = new System.Drawing.Size(65, 42);
-			this.btnSuaBan.TabIndex = 2;
-			this.btnSuaBan.Text = "Sửa";
-			this.btnSuaBan.UseVisualStyleBackColor = true;
-			// 
-			// btnXoaBan
-			// 
-			this.btnXoaBan.Location = new System.Drawing.Point(80, 3);
-			this.btnXoaBan.Name = "btnXoaBan";
-			this.btnXoaBan.Size = new System.Drawing.Size(65, 42);
-			this.btnXoaBan.TabIndex = 1;
-			this.btnXoaBan.Text = "Xóa";
-			this.btnXoaBan.UseVisualStyleBackColor = true;
-			// 
 			// btnThemBan
 			// 
-			this.btnThemBan.Location = new System.Drawing.Point(3, 3);
+			this.btnThemBan.Location = new System.Drawing.Point(163, 3);
 			this.btnThemBan.Name = "btnThemBan";
 			this.btnThemBan.Size = new System.Drawing.Size(65, 42);
 			this.btnThemBan.TabIndex = 0;
 			this.btnThemBan.Text = "Thêm";
 			this.btnThemBan.UseVisualStyleBackColor = true;
-			// 
-			// dgvBan
-			// 
-			this.dgvBan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvBan.Location = new System.Drawing.Point(3, 3);
-			this.dgvBan.Name = "dgvBan";
-			this.dgvBan.Size = new System.Drawing.Size(297, 325);
-			this.dgvBan.TabIndex = 3;
 			// 
 			// panel19
 			// 
@@ -759,20 +763,19 @@
 			// 
 			// panel21
 			// 
-			this.panel21.Controls.Add(this.cbbTrangThai);
+			this.panel21.Controls.Add(this.txtSttBan);
 			this.panel21.Controls.Add(this.label8);
 			this.panel21.Location = new System.Drawing.Point(5, 90);
 			this.panel21.Name = "panel21";
 			this.panel21.Size = new System.Drawing.Size(277, 36);
 			this.panel21.TabIndex = 2;
 			// 
-			// cbbTrangThai
+			// txtSttBan
 			// 
-			this.cbbTrangThai.FormattingEnabled = true;
-			this.cbbTrangThai.Location = new System.Drawing.Point(68, 8);
-			this.cbbTrangThai.Name = "cbbTrangThai";
-			this.cbbTrangThai.Size = new System.Drawing.Size(204, 21);
-			this.cbbTrangThai.TabIndex = 1;
+			this.txtSttBan.Location = new System.Drawing.Point(71, 8);
+			this.txtSttBan.Name = "txtSttBan";
+			this.txtSttBan.Size = new System.Drawing.Size(201, 20);
+			this.txtSttBan.TabIndex = 1;
 			// 
 			// label8
 			// 
@@ -1051,16 +1054,18 @@
 			this.panel8.PerformLayout();
 			this.panel4.ResumeLayout(false);
 			this.tpDanhMuc.ResumeLayout(false);
-			this.panel12.ResumeLayout(false);
+			this.panel16.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvLoai)).EndInit();
+			this.panel12.ResumeLayout(false);
 			this.panel14.ResumeLayout(false);
 			this.panel17.ResumeLayout(false);
 			this.panel17.PerformLayout();
 			this.panel18.ResumeLayout(false);
 			this.panel18.PerformLayout();
 			this.tpBanAn.ResumeLayout(false);
-			this.panel15.ResumeLayout(false);
+			this.panel26.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvBan)).EndInit();
+			this.panel15.ResumeLayout(false);
 			this.panel19.ResumeLayout(false);
 			this.panel21.ResumeLayout(false);
 			this.panel21.PerformLayout();
@@ -1139,8 +1144,6 @@
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Panel panel15;
 		private System.Windows.Forms.Button btnXemBan;
-		private System.Windows.Forms.Button btnSuaBan;
-		private System.Windows.Forms.Button btnXoaBan;
 		private System.Windows.Forms.Button btnThemBan;
 		private System.Windows.Forms.DataGridView dgvBan;
 		private System.Windows.Forms.Panel panel19;
@@ -1151,7 +1154,6 @@
 		private System.Windows.Forms.TextBox txtMaSoBan;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Panel panel21;
-		private System.Windows.Forms.ComboBox cbbTrangThai;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Panel panel13;
 		private System.Windows.Forms.Button btnXemAcc;
@@ -1172,5 +1174,8 @@
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.NumericUpDown nmAccType;
+		private System.Windows.Forms.Panel panel16;
+		private System.Windows.Forms.Panel panel26;
+		private System.Windows.Forms.TextBox txtSttBan;
 	}
 }

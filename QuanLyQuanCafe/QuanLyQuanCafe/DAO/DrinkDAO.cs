@@ -78,6 +78,11 @@ namespace QuanLyQuanCafe.DAO
 			return result > 0;
 		}
 
+		public void DeleteDrinkByCategoryID(int categoryID)
+		{
+			DataProvider.Instance.ExecuteNonQuery("DELETE dbo.Drink WHERE idCategory = " + categoryID);
+		}
+
 		public List<Drink> SearchDrinkByName(string name)
 		{
 			List<Drink> list = new List<Drink>();
